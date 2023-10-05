@@ -1,0 +1,25 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# COLORS
+cd $HOME
+os="$1"
+XorCLi="$2"
+case "$XorCLi" in
+  g)
+    extra_args="-nographic"
+    ;;
+  v)
+    extra_args="-vnc :1"
+    ;;
+  *)
+    echo "Goblok ga ada"
+    ;;
+esac
+
+case "$os" in
+  *)
+    qemu-system-x86_64 -machine q35 -m "$(free --mega | grep 'Mem' | awk '{print $2}')" -smp "$(nproc)" -cpu qemu64 -vga virtio -full-screen -usb -netdev user,id=n1,hostfwd=tcp::2222-:22 -device virtio-net,netdev=n1 $extra_args "$os"
+    ;;
+  *)
+    echo "Sistem operasi yang diberikan tidak didukung."
+    ;;
+esac
