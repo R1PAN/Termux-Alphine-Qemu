@@ -7,8 +7,7 @@ Y="\e[33m"
 B="\e[34m"
 os="alpine"
 
-[[ $# -eq 0 ]] && { echo -en "\e[33mUsage:\e[0m $0 <operative system name> x11[for a grafical enviroment]";exit;}
-[[ $2 == 'x11' ]] 2>/dev/null || { XorCLi="-nographic";}
+XorCLi="-nographic"
 [[ -d ${HOME}/$os ]] && {
   cd ${HOME}/$os
   case "$os" in
