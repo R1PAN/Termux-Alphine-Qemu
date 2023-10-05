@@ -8,8 +8,7 @@ B="\e[34m"
 os="alpine"
 
 XorCLi="-nographic"
-[[ -d ${HOME}/$os ]] && {
-  cd ${HOME}/$os
+  cd ${HOME}/$os &> /dev/null
   case "$os" in
     alpine)
       qemu-system-x86_64 -machine q35 -m $(free --mega|grep "Mem"|awk '{print $2}') -smp \
@@ -19,7 +18,7 @@ XorCLi="-nographic"
         $XorCLi $os.img
       ;;
   esac
-} || {
+ || {
   echo -en $R"E:$W $(basename $0) PATH missing ...$Y Aborting.$W"
   exit 1
 }
