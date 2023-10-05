@@ -4,4 +4,5 @@ curl -s https://raw.githubusercontent.com/R1PAN/Termux-Alphine-qemu/r/run -o $PR
   
 echo -e "\033[1;93m[*] KELAR"
 echo -e "\033[1;93m[*] untuk menjalankan nya : \033[0m run alpine g"
+echo -e "\033[1;91m[!] setelah mejalankan run alpine g tunggu beberapa menit"
 ```
