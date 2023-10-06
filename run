@@ -1,15 +1,29 @@
-#!/data/data/com.termux/files/usr/bin/bash
-os="alpine"
+if [ ! -e "$(find .. -type f -name 'alpine.img')" ]; then
+    echo -e "\033[;32m$os tidak ditemukan."
+    echo -e "\033[;32mjalanakan ulang"
+    exit 1
+fi
 
-XorCLi="-nographic"
-  cd ${HOME}/$os &> /dev/null
-  case "$os" in
-    alpine)
-      qemu-system-x86_64 -machine q35 -m $(free --mega|grep "Mem"|awk '{print $2}') -smp \
-        cpus=$(nproc) -cpu qemu64 -vga virtio -full-screen -usb \
-        -drive if=pflash,format=raw,read-only=on,file=$PREFIX/share/qemu/edk2-x86_64-code.fd \
-        -netdev user,id=n1,hostfwd=tcp::2222-:22 -device virtio-net,netdev=n1 \
-        $XorCLi $os.img
-      ;;
-  esac
- exit 1
+
+
+rr="$1"
+case "$rr" in
+    g)
+        XorCLi="-nographic"
+        ;;
+    v)
+        XorCLi="-vnc :1"
+        ;;
+    *)
+        XorCLi=""
+        ;;
+esac
+
+qemu(){
+qemu-system-x86_64 -machine q35 -m $(free --mega|grep "Mem"|awk '{print $2}') -smp \
+cpus=$(nproc) -cpu qemu64 -vga virtio -usb \
+-netdev user,id=n1,hostfwd=tcp::2222-:22 -device virtio-net,netdev=n1 \
+$XorCLi $(find .. -type f -name "alpine.img")
+}
+
+qemu
