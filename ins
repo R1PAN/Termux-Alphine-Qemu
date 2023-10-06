@@ -8,8 +8,10 @@ curl -s https://raw.githubusercontent.com/R1PAN/Termux-Alphine-qemu/r/run -o $PR
 clear
 
 GR='\033[0;32m'
-NR='\033[0m'                                                                     echo -e "${GR}╭───────────────────────────────────────────────╮${NR}"
-echo -e "${GR}│ run \"g\" untuk menjalankan QEMU tanpa grafis   │${NR}"          echo -e "${GR}│ run \"v\" untuk menggunakan QEMU dengan VNC :1  │${NR}"
+NR='\033[0m'
+echo -e "${GR}╭───────────────────────────────────────────────╮${NR}"
+echo -e "${GR}│ run \"g\" untuk menjalankan QEMU tanpa grafis   │${NR}"
+echo -e "${GR}│ run \"v\" untuk menggunakan QEMU dengan VNC :1  │${NR}"
 echo -e "${GR}│                                               │${NR}"
-echo -e "${GR}│    \033[92mJalankan \"run\" langsung di desktop\033[0m         $>
+echo -e "${GR}│     \033[92mJalankan \"run\" langsung di desktop\033[0;32m        │${NR}"
 echo -e "${GR}╰───────────────────────────────────────────────╯${NR}"
