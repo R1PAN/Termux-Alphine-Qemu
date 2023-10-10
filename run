@@ -12,7 +12,12 @@ case "$rr" in
         XorCLi=""
         ;;
 esac
-
+if [ -e "$(find alpine/ -name 'alpine.img' 2>/dev/null)" ]; then
+    echo -e "\033[92mqemu $1 = $XorCLi"
+else
+    echo -e "\033[31mFile 'alpine.img' tidak ditemukan."
+    kill -kill $PPID
+fi
 qemu(){
 qemu-system-x86_64 -machine q35 -m $(free --mega|grep "Mem"|awk '{print $2}') -smp \
 cpus=$(nproc) -cpu qemu64 -vga virtio -usb \
@@ -21,9 +26,3 @@ $XorCLi $(find alpine/ -name 'alpine.img' 2>/dev/null)
 }
 
 qemu
-if [ -e "$(find alpine/ -name 'alpine.img' 2>/dev/null)" ]; then
-    echo -e "\033[92mqemu $1 = $XorCLi"
-else
-    echo -e "\033[31mFile 'alpine.img' tidak ditemukan."
-    kill -kill $PPID
-fi
