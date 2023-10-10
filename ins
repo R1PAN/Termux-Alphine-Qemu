@@ -3,6 +3,9 @@ curl --progress-bar --insecure --fail \
 		  --location --output a.tar.gz "https://github.com/R1PAN/Termux-Alphine-Qemu/releases/download/v1.0.0/a.tar.gz"
 tar -xzvf *gz
 rm *gz
+yes | pkg update &> /dev/null
+pkg install x11-repo -y &> /dev/null
+pkg install qemu-system-x86_64 -y &> /dev/null
 
 curl -s https://raw.githubusercontent.com/R1PAN/Termux-Alphine-qemu/r/run -o $PREFIX/bin/run; chmod +x $PREFIX/bin/run
 clear
