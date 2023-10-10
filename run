@@ -1,11 +1,11 @@
 cd ${HOME}
+
 if [ -e "$(find alpine/ -name 'alpine.img' 2>/dev/null)" ]; then
-   # echo -e "\033[32mFile 'alpine.img' ditemukan."
+    echo -e "\033[92mqemu $1 = $XorCLi"
 else
     echo -e "\033[31mFile 'alpine.img' tidak ditemukan."
     kill -kill $PPID
 fi
-
 
 rr="$1"
 case "$rr" in
