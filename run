@@ -1,9 +1,9 @@
 cd ${HOME}
-if [ -e "$(find alpine/ -name 'alpine.img')" ]; then
-   # echo -e "\033[32mFile alpine.img ditemukan."
+if [ -e "$(find alpine/ -name 'alpine.img' 2>/dev/null)" ]; then
+   # echo -e "\033[32mFile 'alpine.img' ditemukan."
 else
     echo -e "\033[31mFile 'alpine.img' tidak ditemukan."
-    exit 1
+    kill -kill $PPID
 fi
 
 
