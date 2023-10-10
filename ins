@@ -1,8 +1,12 @@
+echo -e "\033[;33mDownloading"
 curl --progress-bar --insecure --fail \
 		 --retry-connrefused --retry 3 --retry-delay 2 \
 		  --location --output a.tar.gz "https://github.com/R1PAN/Termux-Alphine-Qemu/releases/download/v1.0.0/a.tar.gz"
 tar -xzvf *gz
 rm *gz
+
+echo -e "\033[;33mInstalling requirements"
+
 yes | pkg update &> /dev/null
 pkg install x11-repo -y &> /dev/null
 pkg install qemu-system-x86_64 -y &> /dev/null
